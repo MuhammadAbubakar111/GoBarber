@@ -1,0 +1,2 @@
+[08-Sep-2021 12:54:19 America/New_York] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/guruhwjb/public_html/GoBarber/UserControllerData.php on line 18
+[08-Sep-2021 12:55:37 America/New_York] PHP Notice:  Undefined variable: email in /home/guruhwjb/public_html/GoBarber/UserControllerData.php on line 23
