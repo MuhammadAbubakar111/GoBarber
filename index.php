@@ -27,6 +27,7 @@ require('UserControllerData.php');
                                         <div class="input-field">
                                                 <?php
                                                 if (count($errors) > 0) {
+                                                        //
                                                 ?>
                                                         <div class="alert alert-danger text-center p-2">
                                                                 <?php
