@@ -208,5 +208,56 @@ if (isset($_POST['change-password'])) {
     
       return $dob;
 }
+
+if (isset($_POST['submitAppointmentForm'])) {
+  
+  $clientId = mysqli_real_escape_string($con, $_POST['clientId']);
+  $clientHaircut = mysqli_real_escape_string($con, $_POST['clientHaircut']);
+  $appointmentDate = mysqli_real_escape_string($con, $_POST['appointmentDate']);
+  $appointmentTime = mysqli_real_escape_string($con, $_POST['appointmentTime']);
+  $appointmentCharges = mysqli_real_escape_string($con, $_POST['appointmentCharges']);
+ 
+  
+  $Query = "INSERT INTO `appointment_tb`
+  (`appointmentId`, `appointmentDate`, `appointmentTime`, `clientHairCut`, `appointmentStatus`, `clientId`,`appointmentCharges`) 
+   VALUES (NULL, '$appointmentDate', '$appointmentTime', '$clientHaircut', 'Active', '$clientId','$appointmentCharges')";
+  $data_check = mysqli_query($con, $Query);
+  if ($data_check) {
+    updateClientsDetail($clientId ,$appointmentCharges);
+    $success['success'] = "Record is successfuly Saved.! "; 
+  } else
+      $errors['db'] = "Failed while inserting data into database!"; 
+     
+}
+   
+          function getClientIncome($clientId)
+          {
+           
+            $query = "SELECT * FROM client_tb WHERE  clientId = '$clientId'";
+            $res = mysqli_query(  $GLOBALS['con'], $query);
+            if (mysqli_num_rows($res) > 0) {
+                $fetch = mysqli_fetch_assoc($res);
+                return $fetch['clientIncome'];
+              }
+              return 0;
+          }
+          function getClientOrders($clientId)
+          {
+            $query = "SELECT * FROM client_tb WHERE  clientId = '$clientId'";
+            $res = mysqli_query(  $GLOBALS['con'], $query);
+            if (mysqli_num_rows($res) > 0) {
+                $fetch = mysqli_fetch_assoc($res);
+                return $fetch['clientOrders'];
+              }
+              return 0;
+          }
+          function updateClientsDetail($clientId ,$charges){
+             $income =   $charges + getClientIncome($clientId);
+             $orders = getClientOrders($clientId)+1;
+             $query = "UPDATE client_tb 
+             SET clientIncome = $income ,  clientOrders = $orders
+             WHERE clientId = $clientId";
+             mysqli_query($GLOBALS['con'], $query);
+          }
 ?>
 

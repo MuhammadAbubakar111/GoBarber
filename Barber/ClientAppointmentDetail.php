@@ -2,10 +2,18 @@
  
 
         <div class="card m-3">
-        <div class="card-header">
-                        <h3> Search Filter</h3>
-                        <input type="text" class='form-control' placeholder="Search..." id="myInput">
-                </div>
+                <div class="card-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-lg-4"> <h3> Appointments Detail</h3></div>
+                                        <div class="col-lg-4"></div>
+                                        <div class="col-lg-4">  <input type="button" id="btnExport" value="    Export As PDF" class="btn btn-success form-control" /></div>
+                                        <div class="col-lg-12 p-2">
+                                        <input type="text" class='form-control' placeholder="Search..." id="myInput">
+                                        </div>
+                                     
+                                </div>
+                        </div>
                        
                           
                        
@@ -18,10 +26,11 @@
                                 <thead>
                                         <tr>
                                        
-                                        <th> Name</th>
-                    <th> Email</th>
-                    <th> Phone Number</th>
-                    <th>Action</th>
+                    <th>Client Name</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Time</th>
+                    <th>Hair Cut</th>
+                    
                                              
                                          
                                                 
@@ -29,8 +38,10 @@
                                 </thead>
                                 <tbody>
                                         <?php
-                                         $barberId = $_SESSION['id'];
-                                     $sql = " SELECT *  FROM client_tb where barberId =$barberId";
+                                     $barberId = $_SESSION['id'];
+                                     $clientId = $_GET['clientId'];
+                                     $sql = " SELECT * FROM client_tb , appointment_tb 
+                                     WHERE client_tb.clientId = appointment_tb.clientId and client_tb.BarberId = $barberId and appointment_tb.clientId = $clientId;";
                                         $result = mysqli_query($con, $sql);
                                         if ($result) {
                                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -38,25 +49,15 @@
                                                         <tr>
                                                        
                                                         
-                        
-
-                                                        <td><?php echo $row['clientName'];
+                        <td><?php echo $row['clientName'];
                             ?></td>
-                        <td><?php echo $row['clientEmail'];
+                        <td><?php echo $row['appointmentDate'];
                                     ?></td>
-                                    <td><?php echo $row['clientNumber'];
+                                    <td><?php echo $row['appointmentTime'];
                                     ?></td>
-                                  
- <td align="center">
-                                                                               <?php
-
-echo '
-<a title="Edit" href="Barber.php?PageName=EditClientList&editClientId=' . $row['clientId'] . '" class="btn btn-primary btn-xs  ">Edit</a>
-<a title="Delete" href="Barber.php?PageName=EditClientList&deleteClientId=' . $row['clientId'] . '" class="btn btn-danger btn-xs  ">  Delete</a>';
-?>
-                                                                               </td>
-
-
+                                     <td><?php echo $row['clientHairCut'];
+                                    ?></td>
+                                   
                                                         </tr>
                                         <?php
                                                 }

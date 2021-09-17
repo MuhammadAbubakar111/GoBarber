@@ -65,7 +65,7 @@ if ($email != false && $password != false && $user == "Barber") {
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="info">
-            <h5> MANAGE </h5>
+            <h5> <?php echo $_SESSION['name'];?> </h5>
           </div>
         </div>
 
@@ -94,8 +94,12 @@ if ($email != false && $password != false && $user == "Barber") {
                 </li>
                 <li class="nav-item">
                   <a href="Barber.php?PageName=EditClientList" class="nav-link">
-
                     <p>Update or Delete </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="Barber.php?PageName=Clients" class="nav-link">
+                    <p>Client List </p>
                   </a>
                 </li>
                
@@ -133,7 +137,7 @@ if ($email != false && $password != false && $user == "Barber") {
                 </li>
 
                 <li class="nav-item">
-                  <a href="Admin.php?PageName=Product" class="nav-link">
+                  <a href="Barber.php?PageName=AppointmentList" class="nav-link">
 
                     <p>View Appointment List</p>
                   </a>

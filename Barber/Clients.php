@@ -16,7 +16,9 @@
                                         <th> Name</th>
                     <th> Email</th>
                     <th> Phone Number</th>
-                    <th> Action</th>
+                    <th>Client Income</th>
+                    <th>Client Orders</th>
+                    <th>Detail</th>
                                              
                                          
                                                 
@@ -24,8 +26,8 @@
                                 </thead>
                                 <tbody>
                                         <?php
-                                         $barberId = $_SESSION['id'];
-                                     $sql = " SELECT *  FROM client_tb where barberId = $barberId";
+                                        $barberId = $_SESSION['id'];
+                                     $sql = " SELECT *  FROM client_tb where barberId =  $barberId";
                                         $result = mysqli_query($con, $sql);
                                         if ($result) {
                                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -41,15 +43,20 @@
                                     ?></td>
                                     <td><?php echo $row['clientNumber'];
                                     ?></td>
-                                     <td align="center">
+                                    <td><?php echo $row['clientIncome'];
+                                    ?></td>
+                                     <td><?php echo $row['clientOrders'];
+                                    ?></td>
+                                    
+                                    
+                                    <td align="center">
                                                                                <?php
 
 echo '
-<a title="Edit" href="Barber.php?PageName=AddAppointment&clientId=' . $row['clientId'] . '" class="btn btn-success btn-xs  ">Add Appointment</a>
+<a title="Edit" href="Barber.php?PageName=ClientAppointmentDetail&clientId=' . $row['clientId'] . '" class="btn btn-info btn-xs  ">All Appointments</a>
 ';
 ?>
                                                                                </td>
-
 
 
                                                         </tr>
