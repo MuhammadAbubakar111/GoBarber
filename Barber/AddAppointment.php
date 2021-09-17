@@ -50,7 +50,11 @@
         <label for=""> Client Id</label>
     </div>
     <div class="col-lg-8  form-group">
-        <input type="text" name="clientid" value='<?php echo $_GET["clientId"]?>'   class="form-control" disabled>
+        <input type="text" name='id' value='<?php if(isset($_GET["clientId"])) echo $_GET["clientId"];?>'   class="form-control" disabled>
+        <div hidden class="div">
+        <input type="text" name="clientId" value='<?php echo $_GET["clientId"]?>'   class="form-control">
+        </div>
+       
     </div>
 
     
@@ -58,7 +62,7 @@
     </div>
     
     <div class="col-lg-3">
-        <label for=""> Appointment Date</label>
+        <label for="">Date</label>
     </div>
     <div class="col-lg-8  form-group">
         <input type="date" name="appointmentDate" id="appointmentDate"   class="form-control" required>
@@ -67,7 +71,7 @@
     <div class="col-lg-1">
        </div>
     <div class="col-lg-3">
-        <label for=""> Appointment Time</label>
+        <label for="">  Time</label>
     </div>
     <div class="col-lg-8  form-group">
     <input type="time" name="appointmentTime" id="appointmentTime"   class="form-control" required>
@@ -87,7 +91,16 @@
 <option value="Shape Up">Shape Up</option>
 <option value="Hot Tool Shave">Hot Tool Shave</option>
         </select>
-   
+    </div>
+    <div class="col-lg-2">
+       </div>
+    <div class="col-lg-1">
+       </div>
+    <div class="col-lg-3">
+        <label for=""> Appointment Charges</label>
+    </div>
+    <div class="col-lg-5  form-group">
+    <input type="text" name="appointmentCharges" id="appointmentCharges"   class="form-control" required>
     </div>
 
 </div>
@@ -96,7 +109,7 @@
 <div class="col-lg-4">
        </div>
     <div class="col-lg-3 col-md-6 form-group  text-center ">
-        <input class="form-control btn btn-dark " type="submit"  name="submitClientForm" value="Submit" required>
+        <input class="form-control btn btn-dark " type="submit"  name="submitAppointmentForm" value="Submit" required>
     </div>
     <div class="col-lg-3 col-md-6 form-group  text-center ">
         <input class="form-control btn btn-outline-danger " type="reset" value="Reset" required>
