@@ -3,7 +3,6 @@ require('UserControllerData.php');
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
 $user = $_SESSION['type'];
-echo $email.$password.'2423432'.$user;
 //if user not admin than gotoback page
 if ($email != false && $password != false && $user == "Barber") {
   $sql = "SELECT * FROM users_tb WHERE UserEmail = '$email'";
@@ -88,23 +87,18 @@ if ($email != false && $password != false && $user == "Barber") {
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="Barber.php?PageName=AddNewClient" class="nav-link">
 
                     <p>Add New Client </p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="Barber.php?PageName=EditClientList" class="nav-link">
 
-                    <p>Update Client Profile</p>
+                    <p>Update or Delete </p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-
-                    <p>View Client List</p>
-                  </a>
-                </li>
+               
 
 
               </ul>
@@ -120,7 +114,7 @@ if ($email != false && $password != false && $user == "Barber") {
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="Admin.php?PageName=AddNewProduct" class="nav-link">
+                  <a href="Barber.php?PageName=ClientList" class="nav-link">
 
                     <p>Add New Appointment</p>
                   </a>

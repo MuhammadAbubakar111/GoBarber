@@ -19,6 +19,7 @@ if (isset($_POST['Login'])) {
               $fetch = mysqli_fetch_assoc($res);
               $fetch_pass = $fetch['UserPassword'];
               if (password_verify($UserPassword, $fetch_pass)) { 
+                      $_SESSION['id'] = $fetch['UserId'];
                       $_SESSION['name'] = $fetch['UserName'];
                       $_SESSION['email'] = $UserEmail;
                       $_SESSION['type'] = 'Barber';
@@ -167,5 +168,45 @@ if (isset($_POST['change-password'])) {
             }
         }
       }
+
+      if (isset($_POST['submitClientForm'])) {
+  
+        $clientName = mysqli_real_escape_string($con, $_POST['clientName']);
+        $clientEmail = mysqli_real_escape_string($con, $_POST['clientEmail']);
+        $clientNumber = mysqli_real_escape_string($con, $_POST['clientNumber']);
+        $clientGender = mysqli_real_escape_string($con, $_POST['clientGender']);
+        $clientDob = mysqli_real_escape_string($con, $_POST['clientDob']);
+        $barberId = $_SESSION['id'];
+        
+        $Query = "INSERT INTO `client_tb`
+         (`clientId`, `clientName`, `clientEmail`, `clientNumber`, `clientGender`, `clientDob`, `barberId`) 
+         VALUES (NULL, '$clientName', '$clientEmail', '$clientNumber', '$clientGender', '$clientDob', '$barberId')";
+        $data_check = mysqli_query($con, $Query);
+      
+        if ($data_check) {
+          $success['success'] = "Record is successfuly Saved.! "; 
+        } else
+            $errors['db'] = "Failed while inserting data into database!"; 
+          
+      }
+
+
+      if (isset($_GET['deleteClientId'])) {
+        $id = $_GET['deleteClientId'];
+      
+        $sql = "DELETE FROM client_tb  WHERE clientId = $id ";
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+            echo '<script> alert(" Record  Is Successfully Deleted.!"); </script>';
+            $sql = " select * from client_tb";
+            header('Location: Barber.php?PageName=EditClientList');
+        } else {
+            echo '<script> alert("Failed to Delete this Product.!"); </script>';
+        }
+      }
+      function calcutateAge($dob){
+    
+      return $dob;
+}
 ?>
 
