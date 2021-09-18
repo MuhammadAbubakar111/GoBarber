@@ -7,10 +7,6 @@
                         <input type="text" class='form-control' placeholder="Search..." id="myInput">
                 </div>
                        
-                          
-                       
-                       
-                </div>
                 <div class="table-responsive">
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -18,10 +14,15 @@
                                 <thead>
                                         <tr>
                                        
-                                        <th> Name</th>
-                    <th> Email</th>
-                    <th> Phone Number</th>
-                    <th>Action</th>
+                    <th>Client Name</th>
+                    <th>Client Email</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Time</th>
+                    <th>Hair Cut</th>
+                    <th>Appointment Status</th>
+                    <th> Appointment</th>
+                  
+                    
                                              
                                          
                                                 
@@ -29,8 +30,9 @@
                                 </thead>
                                 <tbody>
                                         <?php
-                                         $barberId = $_SESSION['id'];
-                                     $sql = " SELECT *  FROM client_tb where barberId =$barberId";
+                                     $barberId = $_SESSION['id'];
+                                     $sql = " SELECT * FROM client_tb , appointment_tb 
+                                     WHERE client_tb.clientId = appointment_tb.clientId and client_tb.BarberId = $barberId ";
                                         $result = mysqli_query($con, $sql);
                                         if ($result) {
                                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -38,25 +40,44 @@
                                                         <tr>
                                                        
                                                         
-                        
-
-                                                        <td><?php echo $row['clientName'];
+                        <td><?php echo $row['clientName'];
                             ?></td>
-                        <td><?php echo $row['clientEmail'];
+                                                    <td><?php echo $row['clientEmail'];
+                            ?></td>
+                        <td><?php echo $row['appointmentDate'];
                                     ?></td>
-                                    <td><?php echo $row['clientNumber'];
+                                    <td><?php echo $row['appointmentTime'];
                                     ?></td>
-                                  
- <td align="center">
+                                     <td><?php echo $row['clientHairCut'];
+                                    ?></td>
+                                      
+                                     <td>
+ <strong><?php if ($row['appointmentStatus']== 'Active')
+ {
+?>
+<i class="fa fa-check" aria-hidden="true"></i>
+<?php
+ }
+ else
+ {
+        ?>
+     <i class="fa fa-times" aria-hidden="true"></i>
+        <?php     
+ }
+                                    ?>
+</td>
+<td align="center">
                                                                                <?php
 
 echo '
-<a title="Edit" href="Barber.php?PageName=EditClientList&editClientId=' . $row['clientId'] . '" class="btn btn-primary btn-xs  pl-2 pr-2">Edit</a>
-<a title="Delete" href="Barber.php?PageName=EditClientList&deleteClientId=' . $row['clientId'] . '" class="btn btn-danger btn-xs  pl-2 pr-2 ">  Delete</a>';
+<a title="Edit" href="Barber.php?PageName=AppointmentListEdit&editAppointmentId=' . $row['appointmentId'] .'" class="btn btn-info
+ btn-xs pt-2 pb-2">Cancel</a>
+';
 ?>
                                                                                </td>
-
-
+                                                                           
+ 
+                                   
                                                         </tr>
                                         <?php
                                                 }

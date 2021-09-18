@@ -23,7 +23,7 @@ require('UserControllerData.php');
                 </div>
                 <div class="row tm-register-row tm-mb-35">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-login-l">
-                                <form action="index.php" method="post" class="tm-bg-black p-5 h-100">
+                                <form action9*9="index.php" method="post" class="tm-bg-black p-5 h-100">
                                         <div class="input-field">
                                                 <?php
                                                 if (count($errors) > 0) {

@@ -53,7 +53,7 @@
                                                                                <?php
 
 echo '
-<a title="Edit" href="Barber.php?PageName=ClientAppointmentDetail&clientId=' . $row['clientId'] . '" class="btn btn-info btn-xs  ">All Appointments</a>
+<a title="Edit" href="Barber.php?PageName=ClientAppointmentDetail&clientId=' . $row['clientId'] . '" class="btn btn-info btn-xs  ">Transection History</a>
 ';
 ?>
                                                                                </td>

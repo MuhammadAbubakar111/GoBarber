@@ -259,5 +259,76 @@ if (isset($_POST['submitAppointmentForm'])) {
              WHERE clientId = $clientId";
              mysqli_query($GLOBALS['con'], $query);
           }
+  
+         
+          if (isset($_GET['editAppointmentId'])) {
+            $id = $_GET['editAppointmentId'];
+             if(checkAlreadyCancel($id))
+{
+  $sql = "update  appointment_tb set appointmentStatus = 'Cancel' WHERE appointmentId = $id ";
+  $result = mysqli_query($con, $sql);
+  if ($result) {
+    CancelAppointment($id);
+      header('Location: Barber.php?PageName=AppointmentListEdit');
+  } else {
+      echo '<script> alert("Failed to update the Appointment Detail.!"); </script>';
+  }
+}
+else
+echo '<script> alert("Appointment is already Canceled.!"); </script>';
+         
+          }
+        function checkAlreadyCancel($id){
+          $res = mysqli_query(  $GLOBALS['con'], "select * from appointment_tb where appointmentId = $id ");
+          $fetch = mysqli_fetch_assoc($res);
+          if($fetch['appointmentStatus'] == 'Cancel')
+           return false;
+           return true;
+        }
+         function CancelAppointment($appointmentId){
+          $res = mysqli_query(  $GLOBALS['con'], "select * from appointment_tb where appointmentId = $appointmentId ");
+          $fetch = mysqli_fetch_assoc($res);
+          $clientId =  $fetch['clientId'];
+          $appointmentCharges = $fetch['appointmentCharges'];
+          $res = mysqli_query(  $GLOBALS['con'], "select * from client_tb where clientId = $clientId");
+          $fetch = mysqli_fetch_assoc($res);
+          $orders = $fetch['clientOrders'] - 1 ;
+          $Charges = $fetch['clientIncome'] -  $appointmentCharges;
+          mysqli_query($GLOBALS['con'], "update client_tb set clientOrders = $orders , clientIncome = $Charges where clientId = $clientId");
+         }
+         function getTodayEarning(){
+          $res = mysqli_query(  $GLOBALS['con'], "SELECT SUM(`clientIncome`) as TodayEarning FROM `client_tb`");
+          $fetch = mysqli_fetch_assoc($res);
+          return $fetch['todayEarning'];
+         }
+
+         function getTotalClient(){
+          $res = mysqli_query(  $GLOBALS['con'], "SELECT COUNT(`clientId`) as totalClient FROM `client_tb`;");
+          $fetch = mysqli_fetch_assoc($res);
+          return $fetch['totalClient'];
+         }
+
+         function getTotalApp(){
+          $res = mysqli_query(  $GLOBALS['con'], "SELECT COUNT(`appointmentId`) as totalApp FROM `appointment_tb`");
+          $fetch = mysqli_fetch_assoc($res);
+          return $fetch['totalApp'];
+         }
+
+
+         function getTotalCancelApp(){
+          $res = mysqli_query(  $GLOBALS['con'], "SELECT COUNT(`appointmentStatus`) as cancelApp FROM `appointment_tb` WHERE appointmentStatus='Cancel'");
+          $fetch = mysqli_fetch_assoc($res);
+          return $fetch['cancelApp'];
+         }
+
+         function getTotalEarning(){
+          $res = mysqli_query(  $GLOBALS['con'], "SELECT SUM(`clientIncome`) as totalEarning FROM `client_tb`");
+          $fetch = mysqli_fetch_assoc($res);
+          return $fetch['totalEarning'];
+         }
+
+         
+         ?>
+         
 ?>
 

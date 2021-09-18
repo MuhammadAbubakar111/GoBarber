@@ -25,6 +25,8 @@ if ($email != false && $password != false && $user == "Barber") {
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/d6ef7f2f5c.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -124,15 +126,9 @@ if ($email != false && $password != false && $user == "Barber") {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="Admin.php?PageName=EditProduct" class="nav-link">
+                  <a href="Barber.php?PageName=AppointmentListEdit" class="nav-link">
 
-                    <p>Cancel Appointment </p>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="Admin.php?PageName=EditProduct" class="nav-link">
-                    <p>Update Appointment </p>
+                    <p>Cancel  Appointment </p>
                   </a>
                 </li>
 
@@ -148,44 +144,6 @@ if ($email != false && $password != false && $user == "Barber") {
             </li>
 
 
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon far fa-credit-card"></i>
-                <p>
-                Orders
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="Admin.php?PageName=Orders" class="nav-link">
-                    <p>Active Orders</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="Admin.php?PageName=UnpaidOrder" class="nav-link">
-                    <p>Cancel Orders</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="Admin.php?PageName=PaidOrder" class="nav-link">
-                    <p>Completed Orders</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="Admin.php?PageName=EditOrders" class="nav-link">
-                    <p>Edit Order Detail</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="Admin.php?PageName=EditOrders" class="nav-link">
-                    <p>View Order List</p>
-                  </a>
-                </li>
-
-
-              </ul>
-            </li>
 
             <li class="nav-item">
               <a href="#" class="nav-link">

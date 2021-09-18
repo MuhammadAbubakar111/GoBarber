@@ -45,7 +45,7 @@
                                                                                <?php
 
 echo '
-<a title="Edit" href="Barber.php?PageName=AddAppointment&clientId=' . $row['clientId'] . '" class="btn btn-success btn-xs  ">Add Appointment</a>
+<a title="Edit" href="Barber.php?PageName=AddAppointment&clientId=' . $row['clientId'] . '" class="btn btn-success btn-xs pl-2 pr-2 ">Add Appointment</a>
 ';
 ?>
                                                                                </td>

@@ -30,6 +30,7 @@
                     <th>Appointment Date</th>
                     <th>Appointment Time</th>
                     <th>Hair Cut</th>
+                    <th>Appointment Status</th>
                     
                                              
                                          
@@ -57,6 +58,24 @@
                                     ?></td>
                                      <td><?php echo $row['clientHairCut'];
                                     ?></td>
+                                        <td>
+ <strong><?php if ($row['appointmentStatus']== 'Active')
+ {
+?>
+
+<i class="fa fa-check " aria-hidden="true" ></i>
+
+
+<?php
+ }
+ else
+ {
+        ?>
+     <i class="fa fa-times" aria-hidden="true"></i>
+        <?php     
+ }
+                                    ?>
+</td>
                                    
                                                         </tr>
                                         <?php
