@@ -297,9 +297,18 @@ echo '<script> alert("Appointment is already Canceled.!"); </script>';
           mysqli_query($GLOBALS['con'], "update client_tb set clientOrders = $orders , clientIncome = $Charges where clientId = $clientId");
          }
          function getTodayEarning(){
-          $res = mysqli_query(  $GLOBALS['con'], "SELECT SUM(`clientIncome`) as TodayEarning FROM `client_tb`");
+          $today = date("Y-m-d");
+          $today = substr($today, -5);
+          $res = mysqli_query(  $GLOBALS['con'], "SELECT SUM(`appointmentCharges`) as todayEarning FROM `appointment_tb` WHERE `appointmentStatus` = 'Active' and `appointmentDate` LIKE '%$today';");
           $fetch = mysqli_fetch_assoc($res);
           return $fetch['todayEarning'];
+         }
+         function getTodayApp(){
+          $today = date("Y-m-d");
+          $today = substr($today, -5);
+          $res = mysqli_query(  $GLOBALS['con'], "SELECT count(`appointmentId`) as todayApp FROM `appointment_tb` WHERE `appointmentStatus` = 'Active' and `appointmentDate` LIKE '%$today';");
+          $fetch = mysqli_fetch_assoc($res);
+          return $fetch['todayApp'];
          }
 
          function getTotalClient(){
